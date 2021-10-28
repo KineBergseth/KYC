@@ -7,7 +7,8 @@ const app = express();
 app.use(express.json()); // used to parse JSON bodies
 app.use(express.urlencoded({extended: false})); // parse url-encoded bodies)
 
-async function get_data(type, input) {
+
+async function getData(type, input) {
     const query = {
         PERSON: 'pep?name=',
         COMPANY: 'enheter?orgNr=',
@@ -23,13 +24,14 @@ async function get_data(type, input) {
 
     await axios(config)
         .then(function (response) {
+            console.log('peeeeeepppppppppppppppppeeeep');
+            console.log(response.data);
             return response.data; // data.hits for persons
         })
         .catch(function (error) {
             console.log(error);
         });
-
-}
+};
 
 //test - remove this later
 app.get("/api", (req, res) => {
@@ -46,8 +48,10 @@ app.get("/api/persons:kyc_search", (req, res) => {
 app.get("/api/company:kyc_search", (req, res) => {
     const type = 'COMPANY';
     let kyc_search = req.params;
-    const company_data = get_data(type, kyc_search);
-    res.json({company: "Hello there, company!"});
+    const companyData = getData(type, kyc_search);
+    console.log('peeeeeeeeeep');
+    console.log(companyData);
+    res.json(companyData);
 });
 
 app.get("/api/roles:kyc_search", (req, res) => {

@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.table{
+    padding: 2%;
+    margin-bottom: 1rem;
+    color: #839496;
+    border-color: #073642;
+    text-align: left;
+}
+
+th, td {
+    border-bottom: 1px solid #839496;
+}
