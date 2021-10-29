@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "./persons.styles.css";
 import axios from "axios";
+import {Card, Col, Row} from "react-bootstrap";
 
 const Persons = (props) => {
     const [personData, setPersonData] = useState([]);
@@ -22,35 +23,22 @@ const Persons = (props) => {
             <p>Loading data...</p>
             :
             <>
-                <div className="component-persons container">
-                    {personData.map(result =>
-                        <table className="table-person table" key={result.id}>
-                            <tbody>
-                            <tr>
-                                <td>Name</td>
-                                <td>{result.name}</td>
-                            </tr>
-                            <tr>
-                                <td>Dataset</td>
-                                <td>{result.dataset}</td>
-                            </tr>
-                            <tr>
-                                <td>Birthdate</td>
-                                <td>{result.birth_date}</td>
-                            </tr>
-                            <tr>
-                                <td>Citizenship</td>
-                                <td>{result.countries}</td>
-                            </tr>
-                            <tr>
-                                <td>Score</td>
-                                <td>{result.score}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    )
-                    }
-                </div>
+                <Row xs={1} md={3} className="g-4">
+                    {personData.map(result => (
+                        <Col>
+                            <Card key={result.id}>
+                                <Card.Body>
+                                    <Card.Title>{result.name}</Card.Title>
+                                    <Card.Text>Dataset: {result.dataset}</Card.Text>
+                                    <Card.Text>Birthdate: {result.birth_date}</Card.Text>
+                                    <Card.Text>Countries: {result.countries}</Card.Text>
+                                    <Card.Text>Score: {result.score}</Card.Text>
+                                </Card.Body>
+                                <Card.Footer className="text-muted">Last seen {result.last_seen}</Card.Footer>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
             </>
     )
 }

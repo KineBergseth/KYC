@@ -11,7 +11,6 @@ const Result = (props) => {
 
     return (<>
             <p>Result</p>
-            <p>{value}</p>
             <div className="component-result">
                 {/*<Person person={props.pep_value}/>
                 {showResult && <Result kycValue={value}/>}*/}

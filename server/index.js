@@ -1,12 +1,18 @@
 const express = require("express");
 const axios = require("axios");
+const cors = require("cors");
+require("dotenv").config({ path: "./config.env" });
+
+//const db = require('./db')
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+app.use(cors());
 app.use(express.json()); // used to parse JSON bodies
 app.use(express.urlencoded({extended: false})); // parse url-encoded bodies)
 
+//db.on('error', console.error.bind(console, 'MongoDB connection error: '))
 
 async function getData(type, input) {
     const query = {
@@ -37,7 +43,7 @@ async function getData(type, input) {
 
 //test - remove this later
 app.get("/api", (req, res) => {
-    res.json({message: "Hello there, it works!"});
+    res.json({message: "Hello there, it works! "});
 });
 
 app.get("/api/persons:kyc_search", (req, res) => {
