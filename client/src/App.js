@@ -1,7 +1,7 @@
 import React from "react";
 import logo from './logo.svg';
 import './App.css';
-import Search from "./components/search.component";
+import Search from "./components/search/search.component";
 
 function App() {
     const [data, setData] = React.useState(null);

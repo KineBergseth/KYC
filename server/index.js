@@ -22,8 +22,6 @@ async function getData(type, input) {
         headers: {}
     };
     const response = await axios(config);
-    console.log('peeeeeepppppppppppppppppeeeep');
-    console.log(response.data);
     return response.data;
 
     /*await axios(config)
@@ -47,8 +45,6 @@ app.get("/api/persons:kyc_search", (req, res) => {
     let kyc_search = req.params;
     getData(type, kyc_search)
         .then(data => {
-            console.log('peeeeeeeeeep');
-            console.log(data);
             res.json(data);
         });
 });
@@ -58,8 +54,6 @@ app.get("/api/company:kyc_search", (req, res) => {
     let kyc_search = req.params;
     getData(type, kyc_search)
         .then(data => {
-            console.log('peeeeeeeeeep');
-            console.log(data);
             res.json(data);
         });
 });
@@ -69,8 +63,6 @@ app.get("/api/roles:kyc_search", (req, res) => {
     let kyc_search = req.params;
     getData(type, kyc_search)
         .then(data => {
-            console.log('peeeeeeeeeep');
-            console.log(data);
             res.json(data);
         });
 });
