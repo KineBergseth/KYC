@@ -4,33 +4,40 @@ import axios from "axios";
 
 const Company = (props) => {
     const [companyData, setCompanyData] = useState([]);
+    const [isLoadingData, setLoadingData] = useState(false);
 
 
     useEffect(() => {
-        axios.get(`/api/company${props.kycValue}`)
-            .then((response) => {
-                const company = response;
-                console.log('peeeeeeeeeeeeeeeeeeeeeeeeeep');
-                console.log(company.data);
-                setCompanyData(company);
-            })
-            .catch(error => console.error(error));
-    }, []);
+        (async () => {
+            setLoadingData(true);
+            axios.get(`/api/company${props.kycValue}`)
+                .then((response) => {
+                    setLoadingData(false);
+                    setCompanyData(response.data);
+                })
+                .catch(error => console.error(error));
+        })();
+    }, [props.kycValue]);
 
-    return (<>
-            <div className="component-company container">
-                <p>company</p>
-                <table className="table-company table">
-                    <tbody>
+    return (isLoadingData ?
+            <p>Loading data...</p>
+            :
+            <>
+                <div className="component-company container">
+                    <p>company</p>
+                    <table className="table-company table" key={companyData.organisasjonsnummer}>
+                        <tbody>
+                        <tr>
+                            <td>Firmaname</td>
+                            <td>{companyData.navn}</td>
+                        </tr>
+                        <tr>
+                            <td>Orgnr</td>
+                            <td>{companyData.organisasjonsnummer}</td>
+                        </tr>
+                        {/*
+                    if null value this does not work, check for that
                     <tr>
-                        <td>Firmaname</td>
-                        <td>{companyData.navn}</td>
-                    </tr>
-                    <tr>
-                        <td>Orgnr</td>
-                        <td>{companyData.organisasjonsnummer}</td>
-                    </tr>
-                    {/*<tr>
                         <td>Firmatype</td>
                         <td>{companyData.organisasjonsform.beskrivelse}</td>
                     </tr>
@@ -42,10 +49,10 @@ const Company = (props) => {
                         <td>Stiftelsesdato</td>
                         <td>{companyData.stiftelsesdato}</td>
                     </tr>*/}
-                    </tbody>
-                </table>
-            </div>
-        </>
+                        </tbody>
+                    </table>
+                </div>
+            </>
     )
 }
 

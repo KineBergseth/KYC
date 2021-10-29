@@ -21,8 +21,12 @@ async function getData(type, input) {
         url: `https://stacc-code-challenge-2021.azurewebsites.net/api/${query[type]}${input.kyc_search}`,
         headers: {}
     };
+    const response = await axios(config);
+    console.log('peeeeeepppppppppppppppppeeeep');
+    console.log(response.data);
+    return response.data;
 
-    await axios(config)
+    /*await axios(config)
         .then(function (response) {
             console.log('peeeeeepppppppppppppppppeeeep');
             console.log(response.data);
@@ -30,8 +34,8 @@ async function getData(type, input) {
         })
         .catch(function (error) {
             console.log(error);
-        });
-};
+        });*/
+}
 
 //test - remove this later
 app.get("/api", (req, res) => {
@@ -41,24 +45,34 @@ app.get("/api", (req, res) => {
 app.get("/api/persons:kyc_search", (req, res) => {
     const type = 'PERSON';
     let kyc_search = req.params;
-    const persons_data = get_data(type, kyc_search);
-    res.json({persons: "Hello there, persons!"});
+    getData(type, kyc_search)
+        .then(data => {
+            console.log('peeeeeeeeeep');
+            console.log(data);
+            res.json(data);
+        });
 });
 
 app.get("/api/company:kyc_search", (req, res) => {
     const type = 'COMPANY';
     let kyc_search = req.params;
-    const companyData = getData(type, kyc_search);
-    console.log('peeeeeeeeeep');
-    console.log(companyData);
-    res.json(companyData);
+    getData(type, kyc_search)
+        .then(data => {
+            console.log('peeeeeeeeeep');
+            console.log(data);
+            res.json(data);
+        });
 });
 
 app.get("/api/roles:kyc_search", (req, res) => {
     const type = 'ROLES';
     let kyc_search = req.params;
-    const roles_data = get_data(type, kyc_search);
-    res.json({roles: "Hello there, roles!"});
+    getData(type, kyc_search)
+        .then(data => {
+            console.log('peeeeeeeeeep');
+            console.log(data);
+            res.json(data);
+        });
 });
 
 app.listen(PORT, () => {
