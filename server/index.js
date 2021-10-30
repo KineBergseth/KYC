@@ -1,9 +1,15 @@
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
-require("dotenv").config({ path: "./config.env" });
+//require("dotenv").config({ path: "./config.env" });
 
-//const db = require('./db')
+/*const recordRoutes = express.Router();
+const dbo = require("./db/index.js");
+const ObjectId = require("mongodb").ObjectId;*/
+
+
+const {MongoClient} = require('mongodb');
+
 
 const PORT = process.env.PORT || 3001;
 
@@ -12,7 +18,25 @@ app.use(cors());
 app.use(express.json()); // used to parse JSON bodies
 app.use(express.urlencoded({extended: false})); // parse url-encoded bodies)
 
-//db.on('error', console.error.bind(console, 'MongoDB connection error: '))
+/*recordRoutes.route("/record").get(function (req, res) {
+    let db_connect = dbo.getDb("kyc");
+    db_connect
+        .collection("people")
+        .find({})
+        .toArray(function (err, result) {
+            if (err) throw err;
+            res.json(result);
+        });
+});*/
+const uri = "mongodb+srv://kycuser:kyxpassword@kyccluster.yqg3u.mongodb.net/kyc?retryWrites=true&w=majority";
+const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+client.connect(err => {
+    const collection = client.db("kyc").collection("people");
+    // perform actions on the collection object
+    console.log(collection);
+    client.close();
+});
+
 
 async function getData(type, input) {
     const query = {
@@ -74,5 +98,6 @@ app.get("/api/roles:kyc_search", (req, res) => {
 });
 
 app.listen(PORT, () => {
+
     console.log(`Server listening on ${PORT}`);
 });

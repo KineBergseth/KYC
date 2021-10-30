@@ -6,6 +6,7 @@ const Home = () => {
         <>
             <div className="component-home">
                 <p>Home</p>
+                <p>velkommen til KYC.</p>
             </div>
         </>
     )
