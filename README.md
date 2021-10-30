@@ -1,7 +1,17 @@
 # Stacc coding challenge: KYC
 
-## Prerequisites
-- [Node.js](https://nodejs.org/en/) installed on your machine -
+## Oppgavebeskrivelse
+
+>Beskriv prosjekt kort her
+
+Search - Her kan brukeren fylle inn et navn eller org nr. og søke opp en person eller bedrift med roller. Det vil bli 
+utført en PEP-check som viser info om individene tilknyttet søket.
+
+Dashboard - WIP
+
+## How to run
+### Prerequisites
+- [Node.js](https://nodejs.org/en/) installed on your machine
 - Internet connection
 
 ### Setup
@@ -40,3 +50,8 @@ npm start
 ```
 
 The frontend desktop will now be opened in your default browser running on http://localhost:3000
+
+## Kommentarer
+
+>Noen spesielle valg du ønsker å beskrive/forsvare?
+>Eventuellt andre kommentarer / utfordringer?

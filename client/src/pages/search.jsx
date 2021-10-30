@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import Result from './result.component'
+import Result from '../components/search/result.component'
 
 const randomKycValue = () => {
     // random people and org no. for random choice generator
@@ -10,7 +10,8 @@ const randomKycValue = () => {
         'Magnus Carlsen',
         'Viktor Hovland',
         'Kari Elisabeth Kaski',
-        'Jens Stoltenberg'
+        'Jens Stoltenberg',
+        'obama'
     ];
     const companies = [
         '994023993',
