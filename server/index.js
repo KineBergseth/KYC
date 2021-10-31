@@ -1,20 +1,35 @@
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
-require("dotenv").config({ path: "./config.env" });
+require("dotenv").config({path: "./config.env"});
 
-const {MongoClient} = require('mongodb');
+//const {MongoClient} = require('mongodb');
 // get driver connection
-const dbo = require("./db/index");
+//const dbo = require("./db/index");
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
 app.use(cors());
 app.use(express.json()); // used to parse JSON bodies
-app.use(express.urlencoded({extended: false})); // parse url-encoded bodies)
-app.use(require("./routes/record"));
+app.use(express.urlencoded({extended: true})); // parse url-encoded bodies)
+app.use(require("./routes/person.route"));
+//require("./routes/record")(app);
 
+const dbo = require("./db/index");
+//dbo.on('error', console.error.bind(console, 'MongoDB connection error:'))
+dbo.mongoose
+    .connect(dbo.url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => {
+        console.log("Connected to mongoDB!")
+    })
+    .catch(error => {
+        console.log("Cannot connect to mongoDB! D:", error)
+        process.exit();
+    });
 
 async function getData(type, input) {
     const query = {
@@ -70,11 +85,12 @@ app.get("/api/roles:kyc_search", (req, res) => {
         });
 });
 
+
 app.listen(PORT, () => {
     // perform a database connection when server starts
-    dbo.connectToServer(function (err) {
+    /*dbo.connectToServer(function (err) {
         if (err) console.error(err);
 
-    });
+    });*/
     console.log(`Server listening on ${PORT}`);
 });

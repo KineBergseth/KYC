@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "./persons.styles.css";
 import axios from "axios";
-import {Card, Col, Row} from "react-bootstrap";
+import {Button, Card, Col, Row} from "react-bootstrap";
 
 const countries = require("i18n-iso-countries");
 countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
@@ -9,9 +9,18 @@ countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 const Persons = (props) => {
     const [personData, setPersonData] = useState([]);
     const [isLoadingData, setLoadingData] = useState(false);
+
     //todo can there be multiple contries?
     const countryName = (code) => {
       return countries.getName(code, "en", {select: "official"})
+    }
+
+    const addToDB = (person) => {
+        axios.post(`http://localhost:3000/create/`, person)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch(error => console.error(error));
     }
 
     useEffect(() => {
@@ -41,6 +50,8 @@ const Persons = (props) => {
                                     <Card.Text>Countries: {countryName(result.countries)}</Card.Text>
                                     {/*<Card.Text>Country codes: {result.countries}</Card.Text>*/}
                                     <Card.Text>Score: {result.score}</Card.Text>
+                                    <Button variant="success"
+                                            onClick={() => addToDB(result)}>Add to DB</Button>
                                 </Card.Body>
                                 <Card.Footer className="text-muted">Last seen {result.last_seen}</Card.Footer>
                             </Card>

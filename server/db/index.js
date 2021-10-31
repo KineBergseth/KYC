@@ -1,24 +1,11 @@
-const {MongoClient} = require('mongodb');
+require("dotenv").config({path: "../config/config.env"});
 const uri = process.env.atlas_uri;
-const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+const mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
 
+const db = {};
+db.mongoose = mongoose;
+db.url = 'mongodb+srv://kycuser:kycpassword@kyccluster.yqg3u.mongodb.net/kyc?retryWrites=true&w=majority';
+db.persons = require("../models/person.model")(mongoose);
 
-let _db;
-
-module.exports = {
-    connectToServer: function (callback) {
-        client.connect(function (err, db) {
-            if (db)
-            {
-                _db = db.db("kyc");
-                console.log("Successfully connected to MongoDB.");
-            }
-            return callback(err);
-        });
-    },
-
-    getDb: function () {
-        return _db;
-    },
-};
-
+module.exports = db;

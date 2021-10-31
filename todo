@@ -1,4 +1,25 @@
-SEARCH:
 error management
-data validation - let user know if input is wrong/person is ok, person dont exists
-get reqs 4 search are too slow, do better
+data validation - let user know if input is wrong/person is ok, person dont exists, org no. wrong etc
+get request 4 search is too slow, do better
+fix config file
+split routes into routing + controller?
+
+SEARCH:
+show roles when searching company + append person pep score
+more company data
+
+QUEUE:
+make button update db with note
+if waiting further analysis - bullet thingy with text
+only get waiting / further analysis on list
+confirm window, refresh after pressing button
+refresh listgroup
+
+SUMMARY:
+datatable instead of table?
+embed graphs instead with js sdk, iframe is ugh
+fancy red/green/yellow dot for status?
+make sure graphs gets data from right collection hehe
+
+Lastly: CSS to make it pretty/responsive
+and fix the goddamn navbar, its ugly :o
