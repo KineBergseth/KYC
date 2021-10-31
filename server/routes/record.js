@@ -1,3 +1,4 @@
+// https://www.mongodb.com/languages/mern-stack-tutorial
 const express = require("express");
 const recordRoutes = express.Router();
 const dbo = require("../db/index");
@@ -31,12 +32,19 @@ recordRoutes.route("/record/:id").get(function (req, res) {
 // create a new record.
 recordRoutes.route("/record/add").post(function (req, response) {
     let db_connect = dbo.getDb();
-    let myobj = {
-        person_name: req.body.person_name,
-        person_position: req.body.person_position,
-        person_level: req.body.person_level,
+    let newPerson = {
+        id: req.body.id,
+        name: req.body.name,
+        aliases: req.body.aliases,
+        birth_date: req.body.birth_date,
+        countries: req.body.countries,
+        dataset: req.body.dataset,
+        notes: "",
+        status: "",
+        last_seen: req.body.last_seen,
+        first_seen: req.body.first_seen,
     };
-    db_connect.collection("people").insertOne(myobj, function (error, res) {
+    db_connect.collection("people").insertOne(newPerson, function (error, res) {
         if (error) throw error;
         response.json(res);
     });

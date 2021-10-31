@@ -3,12 +3,17 @@
 ## Oppgavebeskrivelse
 
 >Beskriv prosjekt kort her
+
+
 MERN stack. MongoDB (Atlas), Express.js, React, Node.js
 
-- Search - Her kan brukeren fylle inn et navn eller org nr. og søke opp en person eller bedrift med roller. Det vil bli
-utført en PEP-check som viser info om individene tilknyttet søket.
-- Queue - WIP
-- Summary - Shows history from database. Graphs displaying info + table containing people and their current status
+PAGES:
+- Search: Her kan brukeren fylle inn et navn eller org nr., og søke opp en person eller bedrift med roller. Det vil bli
+utført en PEP-check som viser info om alle individene tilknyttet søket.
+- Queue/Summary simulerer et pep screening tool, hvor en admin blir presentert en kø med personer som har slått ut på 
+PEP status sjekk og blitt lagt til i en database for videre håndtering. 
+  - Queue: Her kan admin gå gjennom køen, se info om hvert individ og tildele de en status
+  - Summary: Viser et sammendrag av data i databasen + grafer med oppsummeringer
 
 ## How to run
 ### Prerequisites
