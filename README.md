@@ -3,11 +3,12 @@
 ## Oppgavebeskrivelse
 
 >Beskriv prosjekt kort her
+MERN stack. MongoDB (Atlas), Express.js, React, Node.js
 
-Search - Her kan brukeren fylle inn et navn eller org nr. og søke opp en person eller bedrift med roller. Det vil bli 
+- Search - Her kan brukeren fylle inn et navn eller org nr. og søke opp en person eller bedrift med roller. Det vil bli
 utført en PEP-check som viser info om individene tilknyttet søket.
-
-Dashboard - WIP
+- Queue - WIP
+- Summary - Shows history from database. Graphs displaying info + table containing people and their current status
 
 ## How to run
 ### Prerequisites

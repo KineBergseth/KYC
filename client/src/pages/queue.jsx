@@ -8,7 +8,7 @@ const Queue = () => {
     return (
         <>
             <div className="component-queue">
-                <p>Queue</p>
+                <h1>Queue</h1>
                 <p>left side: actionable listitems - scrollable element? </p>
                 <p>random image here</p>
                 <h1>NAME</h1>
