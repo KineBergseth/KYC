@@ -1,6 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
+const compression = require("compression");
 require("dotenv").config({path: "./config.env"});
 
 //const {MongoClient} = require('mongodb');
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json()); // used to parse JSON bodies
 app.use(express.urlencoded({extended: true})); // parse url-encoded bodies)
 app.use(require("./routes/person.route"));
+app.use(compression()); //gzip to decrease size of response body & increase speeeeed
 //require("./routes/record")(app);
 
 const dbo = require("./db/index");

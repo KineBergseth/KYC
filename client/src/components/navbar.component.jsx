@@ -1,35 +1,23 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-//import {Container, Nav} from "react-bootstrap";
+import {Container, Nav, Navbar} from "react-bootstrap";
 
-const Navbar = () => {
+const Navigation = () => {
     return (
-        /* bootstrap nav did not work, look at it later and fix it
-        <Navbar bg="light" variant="light">
+        <Navbar bg="light" variant="light" collapseOnSelect expand="md">
             <Container>
-                <Navbar.Brand as={Link} to="/">KYC</Navbar.Brand>
-                <Nav className="me-auto">
-                    <Nav.Link as={Link} to="/">Home</Nav.Link>
-                    <Nav.Link as={Link} to="/search">Search</Nav.Link>
-                    <Nav.Link as={Link} to="/queue">Queue</Nav.Link>
-                    <Nav.Link as={Link} to="/summary">Summary</Nav.Link>
-                </Nav>
+                <Navbar.Brand href="/">PEꟼ</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+                <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+                    <Nav>
+                        <Nav.Link href={"/"}>Home</Nav.Link>
+                        <Nav.Link href={"/search"}>Search</Nav.Link>
+                        <Nav.Link href={"/queue"}>Queue</Nav.Link>
+                        <Nav.Link href={"/summary"}>Summary</Nav.Link>
+                        <Navbar.Text><span className="badge bg-primary">Signed in as Ola N.</span></Navbar.Text>
+                    </Nav>
+                </Navbar.Collapse>
             </Container>
-        </Navbar>*/
-        <div>
-            <li>
-                <Link to="/">Home</Link>
-            </li>
-            <li>
-                <Link to="/search">Search</Link>
-            </li>
-            <li>
-                <Link to="/queue">Queue</Link>
-            </li>
-            <li>
-                <Link to="/summary">Summary</Link>
-            </li>
-        </div>
+        </Navbar>
     );
 }
-export default Navbar;
+export default Navigation;
