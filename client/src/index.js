@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter} from "react-router-dom";
 
 ReactDOM.render(
-    <React.StrictMode>
+    <BrowserRouter>
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -13,7 +14,7 @@ ReactDOM.render(
             crossOrigin="anonymous"
         />
         <App/>
-    </React.StrictMode>,
+    </BrowserRouter>,
     document.getElementById('root')
 );
 

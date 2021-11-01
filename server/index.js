@@ -14,6 +14,8 @@ app.use(express.urlencoded({extended: true})); // parse url-encoded bodies)
 app.use(require("./routes/person.route"));
 app.use(compression()); //gzip to decrease size of response body & increase speeeeed
 
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 const dbo = require("./db/index");
 // void function return value. not optimal but works eh
@@ -78,12 +80,9 @@ app.get("/api/roles:kyc_search", (req, res) => {
         });
 });
 
-// https://stackoverflow.com/questions/41772411/react-routing-works-in-local-machine-but-not-heroku
-app.get("*", (req, res) => {
-    let url = path.join(__dirname, '../client/build', 'index.html');
-    if (!url.startsWith('/app/')) // since we're on local windows
-        url = url.substring(1);
-    res.sendFile(url);
+// Handles any requests that don't match the ones above
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 
 app.listen(PORT, () => {
