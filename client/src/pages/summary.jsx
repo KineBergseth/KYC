@@ -61,6 +61,5 @@ export default Summary;
 
 //todo datatable instead of table?
 //todo embed graphs instead with js sdk, iframe is ugh
-//todo fancy red/green/yellow dot for status?
 //todo make sure graphs gets data from right collection hehe
 //todo if notes not empty, pop up with note

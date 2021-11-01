@@ -14,23 +14,12 @@ app.use(express.urlencoded({extended: true})); // parse url-encoded bodies)
 app.use(require("./routes/person.route"));
 app.use(compression()); //gzip to decrease size of response body & increase speeeeed
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-    app.get("/*", function(req, res) {
-        res.sendFile(path.join(__dirname, "./client/build/index.html"));
-    });
-}
-else {
-    app.use(express.static(path.join(__dirname, '/client/public')));
-    app.get("/*", function(req, res) {
-        res.sendFile(path.join(__dirname, "./client/public/index.html"));
-    });
-}
 
 //app.use(express.static('client/build'));
 
 // Serve the static files from the React app
-//app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 /*app.get("*", (req, res) => {
     let url = path.join(__dirname, '../client/build', 'index.html');
@@ -115,6 +104,10 @@ app.get("/api/roles:kyc_search", (req, res) => {
         });
 });
 
+
+app.get("/*", function (req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 app.listen(PORT, () => {
     // perform a database connection when server starts
