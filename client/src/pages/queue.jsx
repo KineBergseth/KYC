@@ -56,3 +56,4 @@ export default Queue;
 //todo note - show data in textfield? clear textfield
 //todo only get waiting / further analysis on list
 //todo scrollable namelist
+// update status ehn button is clicked on the page?
