@@ -15,12 +15,6 @@ app.use(require("./routes/person.route"));
 app.use(compression()); //gzip to decrease size of response body & increase speeeeed
 
 
-// Serve the static files from the React app
-app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, 'client/build')));
-
-
-
 const dbo = require("./db/index");
 // void function return value. not optimal but works eh
 dbo.mongoose

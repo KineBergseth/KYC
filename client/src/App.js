@@ -8,6 +8,8 @@ import Search from "./pages/search";
 import Queue from "./pages/queue";
 import Summary from "./pages/summary";
 
+const Page404 = () => <h1>Four:oh:four</h1>
+
 function App() {
 
     return (<>
@@ -20,14 +22,9 @@ function App() {
                             <Route path="/search" component={Search}/>
                             <Route path="/queue" component={Queue}/>
                             <Route path="/summary" component={Summary}/>
+                            <Route component={Page404} />
                         </Switch>
                     </Router>
-                    {/*<img src={logo} className="App-logo" alt="logo"/>
-                    <p>
-                        KYC
-                    </p>
-
-                    <p>{!data ? "Loading..." : data}</p>*/}
                 </header>
             </div>
         </>

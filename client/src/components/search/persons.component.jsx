@@ -26,43 +26,46 @@ const Persons = (props) => {
             setLoadingData(true);
             axios.get(`/api/persons${props.kycValue}`)
                 .then((response) => {
-                    setLoadingData(false);
                     setPersonData(response.data.hits);
+                    setLoadingData(false);
                 })
                 .catch(error => console.error(error));
         })();
     }, [props.kycValue]);
 
-    /*if (personData.length === 0) {
-        return (<p>Person is not a PEP</p>)
-    } else {*/
-    return (
-        isLoadingData ?
+    if (personData === undefined || personData.length === 0) {
+        return isLoadingData ?
             <p>Loading data...</p>
-            :
-            <div>
-                <Row xs={1} md={3} className="g-4">
-                    {personData.map(result => (
-                        <Col key={result.id}>
-                            <Card>
-                                <Card.Body>
-                                    <Card.Title>{result.name}</Card.Title>
-                                    <Card.Text>Dataset: {result.dataset}</Card.Text>
-                                    <Card.Text>Birthdate: {result.birth_date}</Card.Text>
-                                    <Card.Text>Countries: {countryName(result.countries)}</Card.Text>
-                                    <Card.Text>Score: {result.score}</Card.Text>
-                                </Card.Body>
-                                <Card.Footer>
-                                    <Button variant="success"
-                                            onClick={() => addToDB(result)}>Add to DB
-                                    </Button>
-                                </Card.Footer>
-                            </Card>
-                        </Col>
-                    ))}
-                </Row>
-            </div>
-    )
+            : <h1>Person is not PEP</h1>
+    } else {
+        return (
+            isLoadingData ?
+                <p>Loading data...</p>
+                :
+                <div>
+                    <Row xs={1} md={3} className="g-4">
+                        {personData.map(result => (
+                            <Col key={result.id}>
+                                <Card>
+                                    <Card.Body>
+                                        <Card.Title>{result.name}</Card.Title>
+                                        <Card.Text>Dataset: {result.dataset}</Card.Text>
+                                        <Card.Text>Birthdate: {result.birth_date}</Card.Text>
+                                        <Card.Text>Countries: {countryName(result.countries)}</Card.Text>
+                                        <Card.Text>Score: {result.score}</Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <Button variant="success"
+                                                onClick={() => addToDB(result)}>Add to DB
+                                        </Button>
+                                    </Card.Footer>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
+                </div>
+        )
+    }
 }
 
 export default Persons;

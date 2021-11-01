@@ -23,40 +23,47 @@ const Company = (props) => {
         })();
     }, [props.kycValue]);
 
-    return (isLoadingData ?
+    if (props.kycValue.length !== 9) {
+        return isLoadingData ?
             <p>Loading data...</p>
-            :
-            <>
-                <div className="component-company container">
-                    <h1>Company overview</h1>
-                    <table className="table-company table" key={companyData.organisasjonsnummer}>
-                        <tbody>
-                        <tr>
-                            <td>Firmaname</td>
-                            <td>{companyData.navn}</td>
-                        </tr>
-                        <tr>
-                            <td>Orgnr</td>
-                            <td>{companyData.organisasjonsnummer}</td>
-                        </tr>
-                        <tr>
-                            <td>Konkurs</td>
-                            <td>{companyData.konkurs === false ? 'nei' : 'ja'}</td>
-                        </tr>
-                        <tr>
-                            <td>Under avvikling</td>
-                            <td>{companyData.underAvvikling === false ? 'nei' : 'ja'}</td>
-                        </tr>
-                        <tr>
-                            <td>Under tvungen avvikling/oppløsning</td>
-                            <td>{companyData.underTvangsavviklingEllerTvangsopplosning === false ? 'nei' : 'ja'}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                {roleData != null? <Roles roles={roleData}/> : null }
-            </>
-    )
+            : <h1>Not a valid org number</h1>
+    } else {
+        return (
+            isLoadingData ?
+                <p>Loading data...</p>
+                :
+                <>
+                    <div className="component-company container">
+                        <h1>Company overview</h1>
+                        <table className="table-company table" key={companyData.organisasjonsnummer}>
+                            <tbody>
+                            <tr>
+                                <td>Firmaname</td>
+                                <td>{companyData.navn}</td>
+                            </tr>
+                            <tr>
+                                <td>Orgnr</td>
+                                <td>{companyData.organisasjonsnummer}</td>
+                            </tr>
+                            <tr>
+                                <td>Konkurs</td>
+                                <td>{companyData.konkurs === false ? 'nei' : 'ja'}</td>
+                            </tr>
+                            <tr>
+                                <td>Under avvikling</td>
+                                <td>{companyData.underAvvikling === false ? 'nei' : 'ja'}</td>
+                            </tr>
+                            <tr>
+                                <td>Under tvungen avvikling/oppløsning</td>
+                                <td>{companyData.underTvangsavviklingEllerTvangsopplosning === false ? 'nei' : 'ja'}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    {roleData != null ? <Roles roles={roleData}/> : null}
+                </>
+        )
+    }
 }
 
 export default Company;
