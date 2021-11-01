@@ -81,7 +81,7 @@ app.get("/api/roles:kyc_search", (req, res) => {
 });
 
 // Handles any requests that don't match the ones above
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
     let url = path.join(__dirname, '../client/build', 'index.html');
     if (!url.startsWith('/app/')) // since we're on local windows
         url = url.substring(1);
