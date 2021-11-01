@@ -1,7 +1,6 @@
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
-const path = require('path');
 const compression = require("compression");
 require("dotenv").config({path: "./config.env"});
 
@@ -14,8 +13,6 @@ app.use(express.urlencoded({extended: true})); // parse url-encoded bodies)
 app.use(require("./routes/person.route"));
 app.use(compression()); //gzip to decrease size of response body & increase speeeeed
 
-// Serve the static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
 
 const dbo = require("./db/index");
 // void function return value. not optimal but works eh
@@ -78,14 +75,6 @@ app.get("/api/roles:kyc_search", (req, res) => {
         .then(data => {
             res.json(data);
         });
-});
-
-// Handles any requests that don't match the ones above
-app.get("/*", (req, res) => {
-    let url = path.join(__dirname, '../client/build', 'index.html');
-    if (!url.startsWith('/app/')) // since we're on local windows
-        url = url.substring(1);
-    res.sendFile(url);
 });
 
 app.listen(PORT, () => {
