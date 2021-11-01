@@ -21,7 +21,7 @@ app.get('*', (req, res) => {
 
 
 const dbo = require("./db/index");
-// todo: whats happening here?
+// todo: whats happening here void function return value is useed ehhh?
 dbo.mongoose
     .connect(dbo.url, {
         useNewUrlParser: true,
