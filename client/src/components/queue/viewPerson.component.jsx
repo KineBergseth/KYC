@@ -1,16 +1,11 @@
 import {Button} from "react-bootstrap";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import countries from "i18n-iso-countries";
 import axios from "axios";
 
 const ViewPerson = (props) => {
     const [notes, setNotes] = useState("");
     const currentPerson = props.person;
-
-
-    useEffect(() => {
-        //setNotes(currentPerson.notes);
-    }, []);
 
     const countryName = (code) => {
         return countries.getName(code, "en", {select: "official"})
@@ -99,12 +94,21 @@ const ViewPerson = (props) => {
             </table>
             <div className="">
                 <Button variant="success"
-                        onClick={() => updateStatus(currentPerson._id, 'approved')}>Approve</Button>
+                        onClick={() => {
+                            updateStatus(currentPerson._id, 'approved');
+                            setNotes("");
+                        }}>Approve</Button>
                 <Button variant="warning"
-                        onClick={() => updateStatus(currentPerson._id, 'awaiting further analysis')}>Further
+                        onClick={() => {
+                            updateStatus(currentPerson._id, 'awaiting further analysis');
+                            setNotes("");
+                        }}>Further
                     enquiry</Button>
                 <Button variant="danger"
-                        onClick={() => updateStatus(currentPerson._id, 'rejected')}>Reject</Button>
+                        onClick={() => {
+                            updateStatus(currentPerson._id, 'rejected');
+                            setNotes("");
+                        }}>Reject</Button>
             </div>
         </div>
     )

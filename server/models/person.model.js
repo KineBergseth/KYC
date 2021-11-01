@@ -21,5 +21,5 @@ module.exports = mongoose => {
         {timestamps: true}
     );
 
-    return mongoose.model("people", personSchema);
+    return mongoose.model("pep", personSchema);
 };

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-import "./company.styles.css";
 import axios from "axios";
+import Roles from "./roles.component";
 
 const Company = (props) => {
     const [companyData, setCompanyData] = useState([]);
@@ -11,21 +11,24 @@ const Company = (props) => {
     useEffect(() => {
         (async () => {
             setLoadingData(true);
-            axios.get(`/api/company${props.kycValue}`)
-                .then((response) => {
+            const reqCompany = axios.get(`/api/company${props.kycValue}`);
+            const reqRoles = axios.get(`/api/roles${props.kycValue}`);
+            axios.all([reqCompany, reqRoles])
+                .then(axios.spread((companyRes, rolesRes) => {
+                    setCompanyData(companyRes.data);
+                    setRoleData(rolesRes.data);
                     setLoadingData(false);
-                    setCompanyData(response.data);
-                })
+                }))
                 .catch(error => console.error(error));
         })();
     }, [props.kycValue]);
 
-    return isLoadingData ?
+    return (isLoadingData ?
             <p>Loading data...</p>
             :
             <>
                 <div className="component-company container">
-                    <p>company</p>
+                    <h1>Company overview</h1>
                     <table className="table-company table" key={companyData.organisasjonsnummer}>
                         <tbody>
                         <tr>
@@ -36,47 +39,24 @@ const Company = (props) => {
                             <td>Orgnr</td>
                             <td>{companyData.organisasjonsnummer}</td>
                         </tr>
-                        {/* todo nested data */}
-                        {/*<tr>
-                            <td>Firmatype</td>
-                            <td>{companyData.organisasjonsform.beskrivelse}</td>
+                        <tr>
+                            <td>Konkurs</td>
+                            <td>{companyData.konkurs === false ? 'nei' : 'ja'}</td>
                         </tr>
                         <tr>
-                            <td>Beskrivelse</td>
-                            <td>{companyData.naeringskode1.beskrivelse}</td>
+                            <td>Under avvikling</td>
+                            <td>{companyData.underAvvikling === false ? 'nei' : 'ja'}</td>
                         </tr>
                         <tr>
-                            <td>Stiftelsesdato</td>
-                            <td>{companyData.stiftelsesdato}</td>
-                        </tr>*/}
+                            <td>Under tvungen avvikling/oppløsning</td>
+                            <td>{companyData.underTvangsavviklingEllerTvangsopplosning === false ? 'nei' : 'ja'}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
-                <div className="component-roles container">
-                   {/* <Row xs={1} md={3} className="g-4">
-                        {personData.map(result => (
-                            <Col key={result.id}>
-                                <Card>
-                                    <Card.Body>
-                                        <Card.Title>{result.name}</Card.Title>
-                                        <Card.Text>Dataset: {result.dataset}</Card.Text>
-                                        <Card.Text>Birthdate: {result.birth_date}</Card.Text>
-                                        <Card.Text>Countries: {countryName(result.countries)}</Card.Text>
-                                        <Card.Text>Country codes: {result.countries}</Card.Text>
-                                        <Card.Text>Score: {result.score}</Card.Text>
-                                        <Button variant="success"
-                                                onClick={() => addToDB(result)}>Add to DB</Button>
-                                    </Card.Body>
-                                    <Card.Footer className="text-muted">Last seen {result.last_seen}</Card.Footer>
-                                </Card>
-                            </Col>
-                        ))}
-                    </Row>*/}
-                </div>
+                {roleData != null? <Roles roles={roleData}/> : null }
             </>
+    )
 }
 
 export default Company;
-
-//todo konk- liquidation, Not registrerd in VAT register bad?
-// todo get roles -> role cards, append score/pep status

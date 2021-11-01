@@ -3,7 +3,7 @@ import {Alert} from "react-bootstrap";
 const EmptyAlert = () => {
 
     return (
-        <Alert variant="primary" className="w-50 h-auto">
+        <Alert variant="primary" className="w-50 h-50">
             <Alert.Heading>Hey, welcome to the queue</Alert.Heading>
             <p>
                 Here you will find political exposed persons that have been marked by the automated program.<br/>

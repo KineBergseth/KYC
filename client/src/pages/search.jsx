@@ -6,9 +6,6 @@ const randomKycValue = () => {
     const people = [
         'Erna Solberg',
         'Knut Arild Hareide',
-        'Lars Monsen',
-        'Magnus Carlsen',
-        'Viktor Hovland',
         'Kari Elisabeth Kaski',
         'Jens Stoltenberg',
         'obama'

@@ -13,8 +13,9 @@ const Queue = () => {
         getPeople();
     }, []);
 
+    // get all people with waiting status
     const getPeople = () => {
-        axios.get(`http://localhost:3000/record/`)
+        axios.get(`http://localhost:3000/waiting/`)
             .then((response) => {
                 setNameData(response.data);
             })
@@ -36,7 +37,8 @@ const Queue = () => {
                         </svg>
                     </Button>
                 </div>
-                <ListGroup variant="flush">
+                {/* clickable name list */}
+                <ListGroup variant="flush" className="overflow-scroll h-50">
                     {nameData.map(result => (
                         <ListGroupItem key={result._id} action onClick={() => setCurrentPerson(result)}>
                             {result.name}
@@ -52,8 +54,3 @@ const Queue = () => {
 }
 
 export default Queue;
-
-//todo note - show data in textfield? clear textfield
-//todo only get waiting / further analysis on list
-//todo scrollable namelist
-// update status ehn button is clicked on the page?

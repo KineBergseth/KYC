@@ -15,22 +15,14 @@ app.use(require("./routes/person.route"));
 app.use(compression()); //gzip to decrease size of response body & increase speeeeed
 
 
-//app.use(express.static('client/build'));
-
 // Serve the static files from the React app
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-/*app.get("*", (req, res) => {
-    let url = path.join(__dirname, '../client/build', 'index.html');
-    if (!url.startsWith('/app/')) // since we're on local windows
-        url = url.substring(1);
-    res.sendFile(url);
-});*/
 
 
 const dbo = require("./db/index");
-// todo: whats happening here void function return value is useed ehhh?
+// void function return value. not optimal but works eh
 dbo.mongoose
     .connect(dbo.url, {
         useNewUrlParser: true,
@@ -51,7 +43,6 @@ async function getData(type, input) {
         ROLES: 'roller?orgNr=',
     };
 
-    // todo create instance instead? look into that later
     const config = {
         method: 'get',
         url: `https://stacc-code-challenge-2021.azurewebsites.net/api/${query[type]}${input.kyc_search}`,
@@ -64,17 +55,6 @@ async function getData(type, input) {
     catch (error){
         console.log(error);
     }
-
-
-    /*await axios(config)
-        .then(function (response) {
-            console.log('peeeeeepppppppppppppppppeeeep');
-            console.log(response.data);
-            return response.data; // data.hits for persons
-        })
-        .catch(function (error) {
-
-        });*/
 }
 
 app.get("/api/persons:kyc_search", (req, res) => {
@@ -104,29 +84,15 @@ app.get("/api/roles:kyc_search", (req, res) => {
         });
 });
 
-
-app.get("/*", function (req, res) {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+// https://stackoverflow.com/questions/41772411/react-routing-works-in-local-machine-but-not-heroku
+app.get("*", (req, res) => {
+    let url = path.join(__dirname, '../client/build', 'index.html');
+    if (!url.startsWith('/app/')) // since we're on local windows
+        url = url.substring(1);
+    res.sendFile(url);
 });
 
 app.listen(PORT, () => {
-    // perform a database connection when server starts
-    /*dbo.connectToServer(function (err) {
-        if (err) console.error(err);
-
-    });*/
     console.log(`Server listening on ${PORT}`);
 });
 
-//todo error management
-//todo data validation - let user know if input is wrong/person is ok, person dont exists, org no. wrong etc
-//todo fix config file
-//todo split routes into routing + controller?
-//todo CSS to make it pretty/responsive
-//todo change bootstrap theme, i dont like the current that much
-//todo remove console logs
-//todo add people to coll
-//todo clean up code
-//todo readme
-//todo comment code
-//todo write tests?

@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import "./persons.styles.css";
 import axios from "axios";
 import {Button, Card, Col, Row} from "react-bootstrap";
 
@@ -10,9 +9,8 @@ const Persons = (props) => {
     const [personData, setPersonData] = useState([]);
     const [isLoadingData, setLoadingData] = useState(false);
 
-    // dont know how this behaves on multiple countries eh, could not find any to try it on
     const countryName = (code) => {
-      return countries.getName(code, "en", {select: "official"})
+        return countries.getName(code, "en", {select: "official"})
     }
 
     const addToDB = (person) => {
@@ -35,10 +33,14 @@ const Persons = (props) => {
         })();
     }, [props.kycValue]);
 
-    return (isLoadingData ?
+    /*if (personData.length === 0) {
+        return (<p>Person is not a PEP</p>)
+    } else {*/
+    return (
+        isLoadingData ?
             <p>Loading data...</p>
             :
-            <>
+            <div>
                 <Row xs={1} md={3} className="g-4">
                     {personData.map(result => (
                         <Col key={result.id}>
@@ -48,17 +50,18 @@ const Persons = (props) => {
                                     <Card.Text>Dataset: {result.dataset}</Card.Text>
                                     <Card.Text>Birthdate: {result.birth_date}</Card.Text>
                                     <Card.Text>Countries: {countryName(result.countries)}</Card.Text>
-                                    {/*<Card.Text>Country codes: {result.countries}</Card.Text>*/}
                                     <Card.Text>Score: {result.score}</Card.Text>
-                                    <Button variant="success"
-                                            onClick={() => addToDB(result)}>Add to DB</Button>
                                 </Card.Body>
-                                <Card.Footer className="text-muted">Last seen {result.last_seen}</Card.Footer>
+                                <Card.Footer>
+                                    <Button variant="success"
+                                            onClick={() => addToDB(result)}>Add to DB
+                                    </Button>
+                                </Card.Footer>
                             </Card>
                         </Col>
                     ))}
                 </Row>
-            </>
+            </div>
     )
 }
 
