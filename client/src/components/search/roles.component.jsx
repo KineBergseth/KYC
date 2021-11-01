@@ -25,6 +25,7 @@ const Roles = (props) => {
                                 <Card.Body>
                                     <Card.Title>{result.type.kode}</Card.Title>
                                     <Card.Text>{res.type.beskrivelse}</Card.Text>
+                                    {/* if a role is a company, don display person info */}
                                     <Card.Text>{'person' in res ? `Fornavn : ${res.person.navn.fornavn}` : ""}</Card.Text>
                                     <Card.Text>{'person' in res ? `Etternavn: ${res.person.navn.etternavn}` : ""}</Card.Text>
                                     <Card.Text>{'person' in res ? `Fødselsdato: ${res.person.fodselsdato}` : ""}</Card.Text>

@@ -46,7 +46,7 @@ npm install
 
 ### Running the code
 
-In the server folder type
+Navigate to the server folder and type
 ```
 npm start
 ```

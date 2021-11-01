@@ -8,7 +8,8 @@ const randomKycValue = () => {
         'Knut Arild Hareide',
         'Kari Elisabeth Kaski',
         'Jens Stoltenberg',
-        'obama'
+        'obama',
+        'Lars Monsen'
     ];
     const companies = [
         '994023993',
