@@ -1,6 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
+const path = require('path');
 const compression = require("compression");
 require("dotenv").config({path: "./config.env"});
 
@@ -12,6 +13,12 @@ app.use(express.json()); // used to parse JSON bodies
 app.use(express.urlencoded({extended: true})); // parse url-encoded bodies)
 app.use(require("./routes/person.route"));
 app.use(compression()); //gzip to decrease size of response body & increase speeeeed
+
+app.use(express.static('client/build'));
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
+
 
 const dbo = require("./db/index");
 // todo: whats happening here?
