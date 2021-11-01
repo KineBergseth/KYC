@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd server && npm install",
+    "start": "npm install",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "server" : "nodemon server.index.js"
   },
