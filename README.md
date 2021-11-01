@@ -59,5 +59,8 @@ The frontend desktop will now be opened in your default browser running on http:
 
 ## Kommentarer
 
+Har ikke gjort verdens største innsats på å få den til å bli helt responsiv. Så selv om den tilpasser seg ok ish til
+små skjermer, anbefales det sterkt å se på appen på en større skjerm.
+
 >Noen spesielle valg du ønsker å beskrive/forsvare?
 >Eventuellt andre kommentarer / utfordringer?

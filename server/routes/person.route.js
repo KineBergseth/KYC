@@ -6,15 +6,17 @@ const Persons = dbo.persons;
 
 // add one person
 recordRoutes.route("/create").post((req, res) => {
-    Persons.create(req.body, (error, data) => {
-        if (error) {
-            res.status(500).json({error: 'Could not add person'})
-        } else {
-            console.log(data)
-            res.json(data);
-        }
-    })
-})
+    try {
+        Persons.create(req.body)
+            .then(data => {
+                console.log(data)
+                res.json(data);
+            })
+    } catch (error) {
+        res.status(error.response.status)
+        return res.send(error.message);
+    }
+});
 
 // get all persons
 recordRoutes.route("/record").get(function (req, res) {
@@ -33,8 +35,6 @@ recordRoutes.route("/record").get(function (req, res) {
 
 // update one person by id
 recordRoutes.route("/update/:id").put((req, res) => {
-    const data = req.params.id;
-    const query = {status: req.params.body};
     Persons.findByIdAndUpdate(req.params.id, req.body)
         .then(data => res.json({message: 'Updates person wohoo'}))
         .catch(error => res.status(500).json({error: 'Could not update person'})

@@ -1,5 +1,4 @@
 import React from "react";
-import "./result.styles.css"
 import Persons from './persons.component'
 import Company from "./company.component";
 

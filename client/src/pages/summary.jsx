@@ -23,14 +23,12 @@ const Summary = () => {
 
     return (
         <>
-            <div className="component-summary">
+            <div className="component-summary mt-3">
                 <h1>Summary</h1>
-                {/*todo: embed charts - change to js sdk*/}
                 <iframe title="chart1" style={chartStyle} width="640" height="480"
     src="https://charts.mongodb.com/charts-kyc-xbmjh/embed/charts?id=60b0ed1a-570b-4226-805a-2a3316aa4ac6&maxDataAge=300&theme=light&autoRefresh=false"/>
                 <iframe title="chart1" style={chartStyle} width="640" height="480"
     src="https://charts.mongodb.com/charts-kyc-xbmjh/embed/charts?id=7e488c53-aa2a-4a2d-85a0-13a2c3ce99d7&maxDataAge=300&theme=light&autoRefresh=false"/>
-                {/*todo: paginated datatable from database, status conditional formatting?*/}
                 <table>
                     <thead>
                     <tr>
@@ -60,3 +58,9 @@ const Summary = () => {
 }
 
 export default Summary;
+
+//todo datatable instead of table?
+//todo embed graphs instead with js sdk, iframe is ugh
+//todo fancy red/green/yellow dot for status?
+//todo make sure graphs gets data from right collection hehe
+//todo if notes not empty, pop up with note

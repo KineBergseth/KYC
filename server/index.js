@@ -4,10 +4,6 @@ const cors = require("cors");
 const compression = require("compression");
 require("dotenv").config({path: "./config.env"});
 
-//const {MongoClient} = require('mongodb');
-// get driver connection
-//const dbo = require("./db/index");
-
 const PORT = process.env.PORT || 3001;
 
 const app = express();
@@ -16,10 +12,9 @@ app.use(express.json()); // used to parse JSON bodies
 app.use(express.urlencoded({extended: true})); // parse url-encoded bodies)
 app.use(require("./routes/person.route"));
 app.use(compression()); //gzip to decrease size of response body & increase speeeeed
-//require("./routes/record")(app);
 
 const dbo = require("./db/index");
-//dbo.on('error', console.error.bind(console, 'MongoDB connection error:'))
+// todo: whats happening here?
 dbo.mongoose
     .connect(dbo.url, {
         useNewUrlParser: true,
@@ -96,3 +91,18 @@ app.listen(PORT, () => {
     });*/
     console.log(`Server listening on ${PORT}`);
 });
+
+//todo error management
+//todo data validation - let user know if input is wrong/person is ok, person dont exists, org no. wrong etc
+//todo get request 4 search is too slow, do better
+//todo fix config file
+//todo split routes into routing + controller?
+//todo CSS to make it pretty/responsive
+//todo change bootstrap theme, i dont like the current that much
+//todo remove console logs
+//todo add people to coll
+//todo clean up code
+//todo unhandled promise rejection
+//todo readme
+//todo comment code
+//todo write tests?

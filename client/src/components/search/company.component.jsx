@@ -4,6 +4,7 @@ import axios from "axios";
 
 const Company = (props) => {
     const [companyData, setCompanyData] = useState([]);
+    const [roleData, setRoleData] = useState([]);
     const [isLoadingData, setLoadingData] = useState(false);
 
 
@@ -19,7 +20,7 @@ const Company = (props) => {
         })();
     }, [props.kycValue]);
 
-    return (isLoadingData ?
+    return isLoadingData ?
             <p>Loading data...</p>
             :
             <>
@@ -35,25 +36,45 @@ const Company = (props) => {
                             <td>Orgnr</td>
                             <td>{companyData.organisasjonsnummer}</td>
                         </tr>
-                        {/*
-                    if null value this does not work, check for that
-                    <tr>
-                        <td>Firmatype</td>
-                        <td>{companyData.organisasjonsform.beskrivelse}</td>
-                    </tr>
-                    <tr>
-                        <td>Beskrivelse</td>
-                        <td>{companyData.naeringskode1.beskrivelse}</td>
-                    </tr>
-                    <tr>
-                        <td>Stiftelsesdato</td>
-                        <td>{companyData.stiftelsesdato}</td>
-                    </tr>*/}
+                        {/*<tr>
+                            <td>Firmatype</td>
+                            <td>{companyData.organisasjonsform.beskrivelse}</td>
+                        </tr>
+                        <tr>
+                            <td>Beskrivelse</td>
+                            <td>{companyData.naeringskode1.beskrivelse}</td>
+                        </tr>
+                        <tr>
+                            <td>Stiftelsesdato</td>
+                            <td>{companyData.stiftelsesdato}</td>
+                        </tr>*/}
                         </tbody>
                     </table>
                 </div>
+                <div className="component-roles container">
+                   {/* <Row xs={1} md={3} className="g-4">
+                        {personData.map(result => (
+                            <Col key={result.id}>
+                                <Card>
+                                    <Card.Body>
+                                        <Card.Title>{result.name}</Card.Title>
+                                        <Card.Text>Dataset: {result.dataset}</Card.Text>
+                                        <Card.Text>Birthdate: {result.birth_date}</Card.Text>
+                                        <Card.Text>Countries: {countryName(result.countries)}</Card.Text>
+                                        <Card.Text>Country codes: {result.countries}</Card.Text>
+                                        <Card.Text>Score: {result.score}</Card.Text>
+                                        <Button variant="success"
+                                                onClick={() => addToDB(result)}>Add to DB</Button>
+                                    </Card.Body>
+                                    <Card.Footer className="text-muted">Last seen {result.last_seen}</Card.Footer>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>*/}
+                </div>
             </>
-    )
 }
 
 export default Company;
+
+//todo konk- liquidation, Not registrerd in VAT register bad?

@@ -3,13 +3,13 @@ import React from 'react'
 const Home = () => {
 
     return (
-        <div className="component-home mx-5">
+        <div className="component-home mx-5 mt-3">
             <h1>PEꟼ</h1>
             <p>Velkommen til PEꟼ<sup>TM</sup> , en web app med et PEP screening tool!</p>
             <p>Du er logget inn som <a href="/">Ola N.</a></p>
             <br/>
             <p>PEꟼ<sup>TM</sup> tjenesten er utviklet av mon£y Corp - et selskap som har holdt på med PEP sjekker siden
-                1843.
+                1643.
                 Vi ønsker vi å tilby de beste tjenestene for våre ansatte slik at PEP søk gjøres på 1-2-3.</p>
             <br/>
             {/* Dette er semanisk dårlig html, men gadd ikke skrive css :o */}

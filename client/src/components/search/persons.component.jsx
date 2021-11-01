@@ -10,7 +10,7 @@ const Persons = (props) => {
     const [personData, setPersonData] = useState([]);
     const [isLoadingData, setLoadingData] = useState(false);
 
-    //todo can there be multiple contries?
+    // todo dont know how this behaves on multiple countries ops
     const countryName = (code) => {
       return countries.getName(code, "en", {select: "official"})
     }

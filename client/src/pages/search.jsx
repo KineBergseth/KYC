@@ -32,8 +32,8 @@ const Search = () => {
     const [showResult, setResult] = useState(false);
 
     const handleSubmit = (event) => {
-      event.preventDefault();
-      setResult(true);
+        event.preventDefault();
+        setResult(true);
     };
 
     const handleInputChange = (event) => {
@@ -48,7 +48,7 @@ const Search = () => {
 
     return (
         <>
-            <div className="component-search">
+            <div className="component-search mt-3">
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="input-kyc">Insert name/Org no. here</label>
                     <input
@@ -69,3 +69,6 @@ const Search = () => {
 }
 
 export default Search;
+
+//todo show roles when searching company + append person pep score
+//todo  more company data
