@@ -10,7 +10,7 @@ const Persons = (props) => {
     const [personData, setPersonData] = useState([]);
     const [isLoadingData, setLoadingData] = useState(false);
 
-    // todo dont know how this behaves on multiple countries ops
+    // dont know how this behaves on multiple countries eh, could not find any to try it on
     const countryName = (code) => {
       return countries.getName(code, "en", {select: "official"})
     }

@@ -10,8 +10,9 @@ const EmptyAlert = () => {
                 You will need to analyse a person, and mark their status them accordingly.<br/>
                 Approve: They are good to go<br/>
                 Further enquiry: unclear, send it up the ladder to the bossman<br/>
-                Reject: people that are too big a risk <br/>
-                If a person is sent for further enquiry, they get marked as a complex case.
+                If a person is sent for further enquiry, they get marked as a complex case.<br/>
+                Reject: people that are too big a risk
+
             </p>
             <hr/>
             <p>

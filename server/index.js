@@ -41,8 +41,14 @@ async function getData(type, input) {
         url: `https://stacc-code-challenge-2021.azurewebsites.net/api/${query[type]}${input.kyc_search}`,
         headers: {}
     };
-    const response = await axios(config);
-    return response.data;
+    try{
+        const response = await axios(config);
+        return response.data;
+    }
+    catch (error){
+        console.log(error);
+    }
+
 
     /*await axios(config)
         .then(function (response) {
@@ -51,7 +57,7 @@ async function getData(type, input) {
             return response.data; // data.hits for persons
         })
         .catch(function (error) {
-            console.log(error);
+
         });*/
 }
 
@@ -94,7 +100,6 @@ app.listen(PORT, () => {
 
 //todo error management
 //todo data validation - let user know if input is wrong/person is ok, person dont exists, org no. wrong etc
-//todo get request 4 search is too slow, do better
 //todo fix config file
 //todo split routes into routing + controller?
 //todo CSS to make it pretty/responsive
@@ -102,7 +107,6 @@ app.listen(PORT, () => {
 //todo remove console logs
 //todo add people to coll
 //todo clean up code
-//todo unhandled promise rejection
 //todo readme
 //todo comment code
 //todo write tests?

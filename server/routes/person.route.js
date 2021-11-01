@@ -23,8 +23,7 @@ recordRoutes.route("/record").get(function (req, res) {
 
     Persons.find()
         .then(data => {
-            res.send(data);
-            res.status(200).send({message: 'Person found!'})
+            res.status(200).send(data);
         })
         .catch(error => {
             res.status(500).send({

@@ -69,6 +69,3 @@ const Search = () => {
 }
 
 export default Search;
-
-//todo show roles when searching company + append person pep score
-//todo  more company data

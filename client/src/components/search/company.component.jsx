@@ -36,6 +36,7 @@ const Company = (props) => {
                             <td>Orgnr</td>
                             <td>{companyData.organisasjonsnummer}</td>
                         </tr>
+                        {/* todo nested data */}
                         {/*<tr>
                             <td>Firmatype</td>
                             <td>{companyData.organisasjonsform.beskrivelse}</td>
@@ -78,3 +79,4 @@ const Company = (props) => {
 export default Company;
 
 //todo konk- liquidation, Not registrerd in VAT register bad?
+// todo get roles -> role cards, append score/pep status
