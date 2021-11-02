@@ -1,5 +1,6 @@
-//const express = require("express");
-//const recordRoutes = express.Router();
+const express = require("express");
+const router = express.Router();
+// todo what is actually the differnce between express.router and app.get? which is better
 const Person = require('../model/person.model');
 
 module.exports = (app) => {
@@ -36,16 +37,17 @@ module.exports = (app) => {
 
 
     // update one person by id
-    // todo not currently function update req
+    // todo i broke this, fix later
     app.get('/persons/update/:id', async (req, res) => {
         try {
+            console.log('wowowowowowowoowwowo');
             const persons = await Person.findByIdAndUpdate(req.params.id, req.body);
             return res.send(persons);
         } catch (error) {
             return res.send(error);
         }
     });
-    /*recordRoutes.route("/update/:id").put((req, res) => {
+    /*router.route("/persons/update/:id").put((req, res) => {
         Person.findByIdAndUpdate(req.params.id, req.body)
             .then(res.json({message: 'Updated person. success!'}))
             .catch(error => res.status(500).json({error: `Could not update person ${error}`})

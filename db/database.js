@@ -5,7 +5,7 @@ mongoose.connect(connection)
     .catch(err => console.log(err));
 
 
-/* todo env
+/*
 require("dotenv").config({path: "../config/config.env"});
 const uri = process.env.atlas_uri;
 
