@@ -1,9 +1,8 @@
 # Stacc coding challenge: KYC
 
+project running on heroku: https://kycyk.herokuapp.com/
+
 ## Oppgavebeskrivelse
-
->Beskriv prosjekt kort her
-
 
 
 Jeg har valgt å løse oppgaven med litt diverse verktøy, og har laget en MERN stack

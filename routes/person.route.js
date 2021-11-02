@@ -36,7 +36,7 @@ module.exports = (app) => {
 
 
     // update one person by id
-    // todo
+    // todo not currently function update req
     app.get('/persons/update/:id', async (req, res) => {
         try {
             const persons = await Person.findByIdAndUpdate(req.params.id, req.body);
