@@ -15,7 +15,7 @@ const Queue = () => {
 
     // get all people with waiting status
     const getPeople = () => {
-        axios.get(`http://localhost:3000/waiting/`)
+        axios.get(`http://localhost:3000/persons/waiting/`)
             .then((response) => {
                 setNameData(response.data);
             })

@@ -14,7 +14,7 @@ const Persons = (props) => {
     }
 
     const addToDB = (person) => {
-        axios.post(`http://localhost:3000/create/`, person)
+        axios.post(`http://localhost:3000/persons/create/`, person)
             .then((response) => {
                 console.log(response.data);
             })

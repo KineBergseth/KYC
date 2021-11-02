@@ -20,7 +20,7 @@ const ViewPerson = (props) => {
             notes: notes,
             status: newStatus
         };
-        axios.put(`http://localhost:3000/update/${id}`, update)
+        axios.put(`http://localhost:3000/persons/update/${id}`, update)
             .then((response) => {
                 console.log('updated data woo');
                 console.log(response);

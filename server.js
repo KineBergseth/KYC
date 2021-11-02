@@ -1,36 +1,23 @@
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
+const path = require("path");
 const compression = require("compression");
-
-
 require("dotenv").config({path: "./config.env"});
-
-const PORT = process.env.PORT || 3001;
-
+require("./db/database");
+require("./model/person.model");
 const app = express();
+
 app.use(cors());
+
+//app.use(require("./routes/person.route"));
+
+// middleware
 app.use(express.json()); // used to parse JSON bodies
-app.use(express.urlencoded({extended: true})); // parse url-encoded bodies)
-app.use(require("./routes/person.route"));
+app.use(express.urlencoded({extended: true})); // parse url-encoded bodies
 app.use(compression()); //gzip to decrease size of response body & increase speeeeed
 
-
-const dbo = require("./db");
-// void function return value. not optimal but works eh
-dbo.mongoose
-    .connect(dbo.url, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    .then(() => {
-        console.log("Connected to mongoDB!")
-    })
-    .catch(error => {
-        console.log("Cannot connect to mongoDB! D:", error)
-        process.exit();
-    });
-
+// rest api
 async function getData(type, input) {
     const query = {
         PERSON: 'pep?name=',
@@ -79,8 +66,8 @@ app.get("/api/roles:kyc_search", (req, res) => {
         });
 });
 
-// Accessing the path module
-const path = require("path");
+// mongodb api
+require("./routes/person.route")(app);
 
 // server static assets if in production
 if(process.env.NODE_ENV === 'production'){
@@ -90,6 +77,8 @@ if(process.env.NODE_ENV === 'production'){
         res.sendFile(path.resolve(__dirname,'client','build','index.html'));
     })
 }
+
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
