@@ -2,6 +2,8 @@ const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
 const compression = require("compression");
+
+
 require("dotenv").config({path: "./config.env"});
 
 const PORT = process.env.PORT || 3001;
@@ -14,7 +16,7 @@ app.use(require("./routes/person.route"));
 app.use(compression()); //gzip to decrease size of response body & increase speeeeed
 
 
-const dbo = require("./db/index");
+const dbo = require("./db");
 // void function return value. not optimal but works eh
 dbo.mongoose
     .connect(dbo.url, {
@@ -76,6 +78,18 @@ app.get("/api/roles:kyc_search", (req, res) => {
             res.json(data);
         });
 });
+
+// Accessing the path module
+const path = require("path");
+
+// server static assets if in production
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build')) // send static files request to client
+    // return frontend for any other route than api
+    app.get('*', (req, res) =>{
+        res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+    })
+}
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

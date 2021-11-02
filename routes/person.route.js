@@ -1,6 +1,6 @@
 const express = require("express");
 const recordRoutes = express.Router();
-const dbo = require("../db/index");
+const dbo = require("../db");
 const Persons = dbo.persons;
 
 // add one person to DB

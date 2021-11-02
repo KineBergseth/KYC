@@ -6,6 +6,6 @@ mongoose.Promise = global.Promise;
 const db = {};
 db.mongoose = mongoose;
 db.url = 'mongodb+srv://kycuser:kycpassword@kyccluster.yqg3u.mongodb.net/kyc?retryWrites=true&w=majority';
-db.persons = require("../models/person.model")(mongoose);
+db.persons = require("../model/person.model")(mongoose);
 
 module.exports = db;

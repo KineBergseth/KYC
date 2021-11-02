@@ -20,6 +20,5 @@ module.exports = mongoose => {
         },
         {timestamps: true}
     );
-
     return mongoose.model("pep", personSchema);
 };
