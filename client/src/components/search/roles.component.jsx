@@ -6,7 +6,7 @@ const Roles = (props) => {
     const [isPep, setIsPep] = useState("");
     const roles = props.roles;
 
-    const pepCheck = async (fName, lName) => {
+    const onPepCheck = async (fName, lName) => {
         const name = (fName + " " + lName).toString();
         axios.get(`/api/persons${name}`)
             .then((response) => {
@@ -26,20 +26,25 @@ const Roles = (props) => {
                                     <Card.Title>{result.type.kode}</Card.Title>
                                     <Card.Text>{res.type.beskrivelse}</Card.Text>
                                     {/* if a role is a company, don display person info */}
-                                    <Card.Text>{'person' in res ? `Fornavn : ${res.person.navn.fornavn}` : ""}</Card.Text>
-                                    <Card.Text>{'person' in res ? `Etternavn: ${res.person.navn.etternavn}` : ""}</Card.Text>
-                                    <Card.Text>{'person' in res ? `Fødselsdato: ${res.person.fodselsdato}` : ""}</Card.Text>
-                                    <Card.Text>{'person' in res ? `${isPep}` : ""}</Card.Text>
-                                    <Card.Footer>
-                                        {'person' in res ?
-                                            <Button
-                                                onClick={() => pepCheck(res.person.navn.fornavn, res.person.navn.etternavn)}>PEP
-                                                check
-                                            </Button>
-                                            :
+                                    {'person' in res ?
+                                        <>
+                                            <Card.Text>{`Fornavn : ${res.person.navn.fornavn}`}</Card.Text>
+                                            <Card.Text>{`Etternavn: ${res.person.navn.etternavn}`}</Card.Text>
+                                            <Card.Text>{`Fødselsdato: ${res.person.fodselsdato}`}</Card.Text>
+                                            <Card.Text>{isPep}</Card.Text>
+                                            <Card.Footer>
+                                                <Button
+                                                    onClick={onPepCheck(res.person.navn.fornavn, res.person.navn.etternavn)}>PEP
+                                                    check
+                                                </Button>
+                                            </Card.Footer>
+                                        </>
+                                        :
+                                        <Card.Footer>
                                             <Card.Text>{res.enhet.navn}</Card.Text>
-                                        }
-                                    </Card.Footer>
+                                        </Card.Footer>
+                                    }
+
                                 </Card.Body>
                             </Card>
                         </Col>

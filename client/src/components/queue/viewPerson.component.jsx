@@ -1,14 +1,25 @@
 import {Button} from "react-bootstrap";
 import React, {useState} from "react";
-import countries from "i18n-iso-countries";
+import countryConvert from "i18n-iso-countries";
 import axios from "axios";
 
 const ViewPerson = (props) => {
     const [notes, setNotes] = useState("");
     const currentPerson = props.person;
+    const {name, aliases, birth_date, countries, dataset, score, status} = props.person;
+    const countryName = countryConvert.getName(countries, "en", {select: "official"});
 
-    const countryName = (code) => {
-        return countries.getName(code, "en", {select: "official"})
+    const submitReject = () => {
+        updateStatus(currentPerson._id, 'rejected');
+        setNotes("");
+    }
+    const submitApprove = () => {
+        updateStatus(currentPerson._id, 'approved');
+        setNotes("");
+    }
+    const submitAnalyse = () => {
+        updateStatus(currentPerson._id, 'awaiting further analysis');
+        setNotes("");
     }
 
     const handleInputChange = (event) => {
@@ -26,7 +37,6 @@ const ViewPerson = (props) => {
             })
             .catch(error => console.error(error));
     }
-
     return (
         <div className="col-md-8">
             <div className="d-md-flex flex-row flex-wrap justify-content-around mb-1">
@@ -36,49 +46,41 @@ const ViewPerson = (props) => {
                         d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
                     <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                 </svg>
-                <h1>{currentPerson.name}</h1>
+                <h1>{name}</h1>
             </div>
             <table className="d-md-flex justify-content-center">
                 <tbody>
                 <tr>
                     <td>Name</td>
-                    <td>{currentPerson.name}</td>
+                    <td>{name}</td>
                 </tr>
                 <tr>
                     <td>Aliases</td>
-                    <td>{currentPerson.aliases}</td>
+                    <td>{aliases}</td>
                 </tr>
                 <tr>
                     <td>Birth date</td>
-                    <td>{currentPerson.birth_date}</td>
+                    <td>{birth_date}</td>
                 </tr>
                 <tr>
                     <td>Countries code</td>
-                    <td>{currentPerson.countries}</td>
+                    <td>{countries}</td>
                 </tr>
                 <tr>
                     <td>Countries</td>
-                    <td>{countryName(currentPerson.countries)}</td>
-                </tr>
-                <tr>
-                    <td>Last seen</td>
-                    <td>{currentPerson.last_seen}</td>
-                </tr>
-                <tr>
-                    <td>First seen</td>
-                    <td>{currentPerson.first_seen}</td>
+                    <td>{countryName}</td>
                 </tr>
                 <tr>
                     <td>Dataset</td>
-                    <td>{currentPerson.dataset}</td>
+                    <td>{dataset}</td>
                 </tr>
                 <tr>
                     <td>Score</td>
-                    <td>{currentPerson.score}</td>
+                    <td>{score}</td>
                 </tr>
                 <tr>
                     <td>Status</td>
-                    <td>{currentPerson.status}</td>
+                    <td>{status}</td>
                 </tr>
                 <tr>
                     <td>Notes</td>
@@ -93,21 +95,14 @@ const ViewPerson = (props) => {
             </table>
             <div className="">
                 <Button variant="success"
-                        onClick={() => {
-                            updateStatus(currentPerson._id, 'approved');
-                            setNotes("");
-                        }}>Approve</Button>
+                        onClick={submitApprove}>Approve
+                </Button>
                 <Button variant="warning"
-                        onClick={() => {
-                            updateStatus(currentPerson._id, 'awaiting further analysis');
-                            setNotes("");
-                        }}>Further
-                    enquiry</Button>
+                        onClick={submitAnalyse}>Further enquiry
+                </Button>
                 <Button variant="danger"
-                        onClick={() => {
-                            updateStatus(currentPerson._id, 'rejected');
-                            setNotes("");
-                        }}>Reject</Button>
+                        onClick={submitReject}>Reject
+                </Button>
             </div>
         </div>
     )
