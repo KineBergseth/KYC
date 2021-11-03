@@ -45,7 +45,7 @@ npm install
 
 ### Running the code
 
-Navigate to the server folder and type
+Navigate to this project's root directory and type
 ```
 npm start
 ```
