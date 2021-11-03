@@ -6,7 +6,7 @@ const Summary = () => {
     const [summaryData, setSummaryData] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/persons/get/`)
+        axios.get(`/persons/get/`)
             .then((response) => {
                 setSummaryData(response.data);
             })
