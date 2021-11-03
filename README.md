@@ -58,16 +58,3 @@ npm start
 ```
 
 The frontend desktop will now be opened in your default browser running on http://localhost:3000
-
-## Kommentarer
-
-Har ikke gjort verdens største innsats på å få den til å bli helt responsiv. Så selv om den tilpasser seg ok ish til
-små skjermer, anbefales det sterkt å se på appen på en større skjerm. Designet er litt meh, hvis jeg hadde hatt mer tid,
-ville det vært penere. 
-
-Fokuserte mest på å få litt diverse funksjonalitet inn, og noen ting gikk litt på bekostning av det.
-Noen svakheter:
-- ikke verdens beste error håndtering når det kommer til api kall, skjer litt rare ting i konsollen til tider
-- hvis en søker opp en person som ikke er PEP eller en org som ikke eksisterer, så får du errorer ops. 
-(i så fall bare refresh så funker det igjen). Rakk ikke å legge inn feilmelding her uheldigvis. 
-- Prøvde å laste opp på heroku, men gikk dårlig.
